@@ -1,3 +1,10 @@
 * Backend *
 
 the main purpose of the backend is to manage the data by functoning as a link between frontend and database.
+
+
+
+- to create a file
+
+fs = require("node: fs)
+fs.writeFile("filename","file contents", callbackfunction)
