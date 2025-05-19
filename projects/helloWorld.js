@@ -1,4 +1,4 @@
-// console.log("hello world");
+console.log("hello world");
 
 const gUser = (username) => {
     console.log(`welcome ${username}`)

@@ -1,17 +1,28 @@
 /**
+ * Creating new file
+ * fs => file system
  * fs.writeFile("filename","file contents", callbackfunction)
+ * note: if we again run the command it will replace the previous file and make new again with same content
 */
+
+// using CJS not ESM
 const fs = require("node:fs");
 
-const fileName = "demo.txt";
-const fileContents = "Hi Aditya";
+const createFile = () => {
 
-const fileNotification = (err) => {
-    if(err){
-        console.log("ERROR")
-        return;
-    }
-    console.log("Created Successfully")
-};
+    const fileName = "demo.txt";
+    const fileContents = "Hi Aditya";
 
-fs.writeFile(fileName, fileContents, fileNotification)
+    const fileNotification = (error) => {
+        if(error){
+            console.log("ERROR")
+            return;
+        }
+        console.log("Created Successfully")
+    };
+
+    fs.writeFile(fileName, fileContents, fileNotification);
+
+}
+
+createFile();

@@ -3,6 +3,12 @@
 the main purpose of the backend is to manage the data by functoning as a link between frontend and database.
 
 
+---  NODE  ---
+
+-to run node file
+(nodes file are js type)
+node `filename
+
 
 - to create a file
 
