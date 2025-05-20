@@ -1,0 +1,16 @@
+{
+  "name": "greetings",
+  "version": "1.0.0",
+  "description": "greet using node js",
+  "main": "index.js",
+  "scripts": {
+    "hello": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "greet",
+    "greetings"
+  ],
+  "author": "imadityagolu",
+  "license": "ISC"
+}

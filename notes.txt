@@ -3,14 +3,48 @@
 the main purpose of the backend is to manage the data by functoning as a link between frontend and database.
 
 
----  NODE  ---
+---  NODE  ----------------------------------------------------------------------------------------------------------------------
 
 -to run node file
 (nodes file are js type)
-node `filename
+node filename.js
 
 
 - to create a file
 
 fs = require("node: fs)
 fs.writeFile("filename","file contents", callbackfunction)
+
+- to create JSON file
+fs.writeFile("filename.json", JSON.stringify(data), (error) => {})
+
+- to edit file
+fs.appendFile("filename",fileContent, (error) => {});
+
+-to read file
+fs.readFile("filename",(err,data) => {});
+
+- to delete file
+fs.unlink(filename, (error) => {});
+
+- to check if file exist
+fs.existsSync(filename);
+
+- to get the path of dir/folder/file
+console.log(__dirname);
+console.log(__filename);
+
+- to create and join the path as a string
+path.join(__dirname, "../", foldername, filename);
+
+- to start any os process
+cp.exec("start ____");
+
+
+
+- to create your own package
+1. run the command "npm init"
+2. fill all the important details
+3. create index.js file -> write your code -> export module
+4. create start section under scripts in package.json file
+5. run by using the start name given in scripts
