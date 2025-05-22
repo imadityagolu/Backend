@@ -1,6 +1,7 @@
 /**
  * 1. install "npm init" make package and index file
  * 2. install terminal browser - puppeteer npm
+ *  website : https://www.npmjs.com/package/puppeteer
  * ----- puppeteer is a 3rd party application and it has its own keys
  * 3. install a browser
  * 4. open the website link

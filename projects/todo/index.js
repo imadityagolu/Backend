@@ -5,7 +5,10 @@
 */
 const { exit } = require("process");
 const readline = require("readline");
-const fs = require("node:fs");
+const fs = require("node:fs").promises;
+const path = require("path");
+
+const filepath = path.join(__dirname, "task.txt");
 
 const getInput = (question) => {
     const rl = readline.createInterface({
@@ -23,30 +26,111 @@ const getInput = (question) => {
 
 const addTask = async() => {
     try{
-        const task = await getInput("Type your task: ");
-        fs.appendFile("task.txt", "\n"+task, (error) => {
-            if(error){
-                console.log("Error while adding new task");
-                return;
+
+        const task = await getInput("Type your task => ");
+
+        try{
+            await fs.access(filepath);
+            const fileContent = await fs.readFile(filepath, "utf8")
+
+            if(fileContent.trim() === ""){
+                await fs.writeFile(filepath, task);
+                console.log("File created. Task added.");
             }
-            console.log("\nTask added => " + task);
-        });
-    } catch (error) {
-        console.log(error);
+            else {
+                await fs.appendFile(filepath, `\n${task}`)
+                console.log("Task added.");
+            }
+
+        } 
+        catch(error) 
+        {
+            await fs.writeFile(filepath, task);
+            console.log("File created. Task added.");
+        }
+
+    } 
+    catch (error) 
+    {
+        console.log("Error while adding task");
     }
 }
 
-const readFile = async() => {
+const viewList = async() => {
     try{
-        fs.readFile("task.txt",(error,data) => {
-            if(error){
-                console.log("ERROR while reading file")
-                return;
-            }
-            console.log("\nYour Tasks are:-\n"+data.toString())
-        });
-    } catch (error) {
-        console.log(error);
+        const data = await fs.readFile(filepath, "utf8");
+        return data.split("\n");
+    } 
+    catch (error) 
+    {
+        console.log("error reading file");
+        return [];
+    }
+}
+
+const markComplete = async() => {
+    try {
+        const data = await viewList();
+        if(data.length ===0){
+            console.log("No task available to mark complete");
+            return;
+        }
+        if( data.length === 1 && data[0].trim() === ""){
+            console.log("\nNo task added yet");
+            return;
+        }
+        console.log("\nYour Tasks are :-");
+        data.map((line, id) => {
+                    console.log(`${id + 1}. ${line}`)
+                });
+
+        let id = Number(await getInput("Choose the task to mark => "));
+        if(isNaN(id) || id < 1 || id > data.length){
+            console.log("invalide task index");
+            return;
+        }
+
+        data[id - 1] = `✅ ${data[id -1]}`;
+        await fs.writeFile(filepath, data.join("\n"));
+        console.log("Task marked as completed");
+    }
+    catch(error)
+    {
+        console.log("error while marking complete");
+    }
+}
+
+const deleteTask = async() => {
+    try {
+        const data = await viewList();
+        if(data.length ===0){
+            console.log("No task available to delete");
+            return;
+        }
+        if( data.length === 1 && data[0].trim() === ""){
+            console.log("\nNo task available to delete");
+            return;
+        }
+        console.log("\nYour Tasks are :-");
+        data.map((line, id) => {
+                    console.log(`${id + 1}. ${line}`)
+                });
+
+        let id = Number(await getInput("Choose the task delete => "));
+        if(isNaN(id) || id < 1 || id > data.length){
+            console.log("invalide task index");
+            return;
+        }
+
+        data.splice(id - 1, 1);
+        const cleanedData = data.filter(task => task.trim() !== "");
+        await fs.writeFile(filepath, cleanedData.join("\n"));
+        console.log("Task deleted");
+        
+    }
+    catch(error)
+    {
+        console.log("error while deleting");
     }
 }
 
@@ -59,18 +143,34 @@ async function main() {
     console.log("4. Remove a task.");
     console.log("5. Exit");
 
-    const choice = await getInput("Enter your choice 1/2/3/4/5 ?_");
+    const choice = await getInput("Enter your choice 1/2/3/4/5 ? ");
     
     switch (choice){
         case "1":
             await addTask();
             break;
         case "2":
-            await readFile();
+            const data = await viewList();
+            if(data.length === 1 && data[0].trim() === ""){
+                console.log("\nNo Task Added Yet");
+                break;
+            }
+            if(data.length > 0){
+                console.log("\nYour tasks are:-");
+                data.map((line, id) => {
+                    console.log(`${id + 1}. ${line}`)
+                });
+            }
+            else{
+                console.log("\nNo Task Added Yet");
+                break;
+            }
             break;
         case "3":
+            await markComplete();
             break;
         case "4":
+            await deleteTask();
             break;
         case "5":
             exit();
