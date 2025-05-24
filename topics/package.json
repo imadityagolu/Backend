@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "express": "^5.1.0",
     "node-wifi": "^2.0.16"
   }
 }

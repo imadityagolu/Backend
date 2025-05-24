@@ -1,0 +1,14 @@
+{
+  "name": "serverexpress",
+  "version": "1.0.0",
+  "main": "serverExpress.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "imadityagolu",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
