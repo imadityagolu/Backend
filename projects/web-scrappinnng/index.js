@@ -8,11 +8,9 @@ const fetchData = async () => {
     try {
         // Make the HTTP request with a User-Agent to mimic a browser
         const response = await axios.get(
-            "https://www.timesjobs.com/candidate/job-search.html?searchType=Home_Search&from=submit&asKey=OFF&txtKeywords=&cboPresFuncArea=35&clusterName=CLUSTER_FA&hc=CLUSTER_FA",
+            "https://www.timesjobs.com/candidate/job-search.html?searchType=Home_Search&from=submit&asKey=OFF&txtKeywords=&cboPresFuncArea=35",
             {
                 headers: {
-                    "User-Agent":
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
                     "content-type": "text/html",
                 },
             }
@@ -34,12 +32,21 @@ const fetchData = async () => {
 
         // Iterate over each job container
         jobContainer.each((i, job) => {
+
             // Extract company name
             const companyName = $(job).find("h3.joblist-comp-name").text().trim();
 
             const companyPost = $(job).find("h2.heading-trun").text().trim();
 
             const companySalary = $(job).find("ul.top-jd-dtl.mt-16.clearfix > li:nth-child(3)").text().trim();
+            
+            const location = $(job).find("ul.top-jd-dtl.mt-16.clearfix > li:nth-child(1)").text().trim();
+            
+            const jobType = $(job).find("").text().trim();
+            
+            const postedDate = $(job).find("span.sim-posted").text().trim();
+            
+            const jobDesc = $(job).find("ul.list-job-dtl.clearfix > li.job-description__").text().trim();
 
             // Only add to jobData if companyName is not empty
             if (!companyName) {
@@ -47,9 +54,12 @@ const fetchData = async () => {
             }
 
             jobData.push({
+                    "Job Title": companyPost,
                     "company name": companyName,
-                    "company post": companyPost,
-                    "pay salary": companySalary,
+                    "Location": location,
+                    "Job Type": jobType,
+                    "Posted Date": postedDate,
+                    "Job Description": jobDesc,
                 });
         });
 
@@ -58,21 +68,21 @@ const fetchData = async () => {
             console.log("No job data collected.");
         }
 
-        // console the final jobData
+    // console the final jobData
         // console.log(jobData);
 
 // puting data in excel file-----------------
 
-        // creating sheet
+    // creating sheet
         const sheet = XLSX.utils.book_new();
 
-        //json to sheet
+    //json to sheet
         const rowcolm = XLSX.utils.json_to_sheet(jobData);
 
-        // append both in one file with filename
+    // append both in one file with filename
         XLSX.utils.book_append_sheet(sheet, rowcolm, "jobdata.xlsx");
 
-        // creating excel file
+    // creating excel file
         XLSX.writeFileXLSX(sheet, "jobdata.xlsx");
 
     } catch (error) {

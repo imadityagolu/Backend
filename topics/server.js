@@ -1,5 +1,6 @@
 const http = require("node:http");
 
+// data
 const dataTodo = [
   { "id": 1, "todo": "eat" },
   { "id": 2, "todo": "sleep" },
@@ -12,13 +13,15 @@ const dataUser = [
   { "id": 3, "name": "jadu" }
 ];
 
+
+// server function
 const serverFn = (req, res) => {
 
     //when server gets request after api is hit, it send msg in treminal
     console.log("Request received !");
 
-    //GET => server sends data when client asks for data
-    //POST => client sends data to server for storaging data
+//GET => server sends data when client asks for data
+//POST => client sends data to server for storaging data
 
     //different urls
     if(req.url == "/todo"){
@@ -68,6 +71,12 @@ const serverFn = (req, res) => {
     
 };
 
+
+// creating server
 const server = http.createServer(serverFn);
 
-server.listen(6969, () => console.log("server is running..."));
+// declaring POST address
+const port = 6969;
+
+//running server
+server.listen(port, () => console.log("server is running..."));

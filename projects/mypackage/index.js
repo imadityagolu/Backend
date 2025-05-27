@@ -13,4 +13,5 @@ r1.question("Type your name?\n", (answer) => {
 });
 }
 
+// when uploading to npm website
 module.exports = greetings;

@@ -1,3 +1,4 @@
+// loading express by using - npm install express
 const express = require("express");
 const app = express();
 
