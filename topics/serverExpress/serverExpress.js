@@ -1469,6 +1469,68 @@ app.get("/todo", (req, res) => {
     }
 });
 
+// using POST - query
+app.post("/todo", (req, res) => {
+
+    //to get query data with id
+    // console.log(req.query.id);
+
+    if(req.query.id){
+        const todopost = dataTodo.find(todo => todo.id == req.query.id);
+        if(!todopost){
+            res.status(404).json({
+                message: "todo POST api",
+                success: false,
+                result: []
+            })
+        }
+        else {
+            res.json({
+                message: "todo POST api",
+                success: true,
+                result: [todopost]
+            })
+        }
+    }
+    else {
+        res.json({
+            message: "todo POST api",
+            result: dataTodo
+        })
+    }
+});
+
+// using GET - params
+app.post("/todo/:id", (req, res) => {
+    
+    //to get parameter data with id
+    // console.log(req.params.id);
+
+    if(req.params.id){
+        const todoget = dataTodo.find(todo => todo.id == req.params.id);
+        if(!todoget){
+            res.status(404).json({
+                message: "todo GET api",
+                success: false,
+                result: []
+            })
+        }
+        else {
+            res.json({
+                message: "todo GET api",
+                success: true,
+                result: [todoget]
+            })
+        }
+    }
+    else {
+        res.json({
+            message: "todo GET api",
+            result: dataTodo
+        })
+    }
+});
+
 // using POST - params
 app.post("/todo/:id", (req, res) => {
     
