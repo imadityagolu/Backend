@@ -1,5 +1,9 @@
 const axios = require("axios");
+
+//browser
 const cheerio = require("cheerio");
+
+//for excel sheet
 const XLSX = require("xlsx");
 
 const jobData = [];

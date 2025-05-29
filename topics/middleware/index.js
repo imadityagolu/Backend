@@ -2,6 +2,7 @@ const express = require("express");
 
 const app = express();
 
+//to save PORT in .env file and get it from there
 const dotenv = require("dotenv");
 dotenv.config();
 const PORT = process.env.PORT;

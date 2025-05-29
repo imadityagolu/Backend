@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "web scrapping the e-commerce",
   "main": "index.js",
-
   "type": "module",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +14,7 @@
   "author": "imadityagolu",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^24.9.0"
+    "puppeteer": "^24.9.0",
+    "xlsx": "^0.18.5"
   }
 }
