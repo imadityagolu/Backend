@@ -1,0 +1,262 @@
+{
+  "orangeCap": [
+    {
+      "player": "Ishan Kishan",
+      "runs": 479,
+      "matches": 16
+    },
+    {
+      "player": "Virat Kohli",
+      "runs": 849,
+      "matches": 15
+    },
+    {
+      "player": "Faf du Plessis",
+      "runs": 575,
+      "matches": 14
+    },
+    {
+      "player": "Jos Buttler",
+      "runs": 441,
+      "matches": 14
+    },
+    {
+      "player": "Glenn Maxwell",
+      "runs": 542,
+      "matches": 14
+    },
+    {
+      "player": "Rohit Sharma",
+      "runs": 672,
+      "matches": 12
+    },
+    {
+      "player": "Shikhar Dhawan",
+      "runs": 491,
+      "matches": 16
+    },
+    {
+      "player": "KL Rahul",
+      "runs": 461,
+      "matches": 14
+    },
+    {
+      "player": "Kieron Pollard",
+      "runs": 784,
+      "matches": 12
+    },
+    {
+      "player": "Jonny Bairstow",
+      "runs": 446,
+      "matches": 13
+    }
+  ],
+  "mostFours": [
+    {
+      "player": "Virat Kohli",
+      "runs": 45,
+      "matches": 14
+    },
+    {
+      "player": "Rishabh Pant",
+      "runs": 35,
+      "matches": 14
+    },
+    {
+      "player": "Andre Russell",
+      "runs": 67,
+      "matches": 13
+    },
+    {
+      "player": "Ben Stokes",
+      "runs": 72,
+      "matches": 13
+    },
+    {
+      "player": "Suresh Raina",
+      "runs": 61,
+      "matches": 15
+    },
+    {
+      "player": "Suryakumar Yadav",
+      "runs": 31,
+      "matches": 13
+    },
+    {
+      "player": "Glenn Maxwell",
+      "runs": 79,
+      "matches": 12
+    },
+    {
+      "player": "Rohit Sharma",
+      "runs": 35,
+      "matches": 15
+    },
+    {
+      "player": "Jonny Bairstow",
+      "runs": 64,
+      "matches": 15
+    },
+    {
+      "player": "Ishan Kishan",
+      "runs": 46,
+      "matches": 14
+    }
+  ],
+  "mostSixes": [
+    {
+      "player": "AB de Villiers",
+      "runs": 25,
+      "matches": 15
+    },
+    {
+      "player": "Rishabh Pant",
+      "runs": 30,
+      "matches": 13
+    },
+    {
+      "player": "Glenn Maxwell",
+      "runs": 17,
+      "matches": 15
+    },
+    {
+      "player": "Ishan Kishan",
+      "runs": 24,
+      "matches": 15
+    },
+    {
+      "player": "Faf du Plessis",
+      "runs": 19,
+      "matches": 13
+    },
+    {
+      "player": "Virat Kohli",
+      "runs": 21,
+      "matches": 16
+    },
+    {
+      "player": "Chris Gayle",
+      "runs": 18,
+      "matches": 15
+    },
+    {
+      "player": "Andre Russell",
+      "runs": 38,
+      "matches": 16
+    },
+    {
+      "player": "Kieron Pollard",
+      "runs": 28,
+      "matches": 13
+    },
+    {
+      "player": "Jonny Bairstow",
+      "runs": 34,
+      "matches": 14
+    }
+  ],
+  "mostCenturies": [
+    {
+      "player": "Jos Buttler",
+      "runs": 3,
+      "matches": 12
+    },
+    {
+      "player": "Suresh Raina",
+      "runs": 3,
+      "matches": 13
+    },
+    {
+      "player": "Jonny Bairstow",
+      "runs": 2,
+      "matches": 12
+    },
+    {
+      "player": "KL Rahul",
+      "runs": 4,
+      "matches": 13
+    },
+    {
+      "player": "Rishabh Pant",
+      "runs": 1,
+      "matches": 12
+    },
+    {
+      "player": "Shikhar Dhawan",
+      "runs": 3,
+      "matches": 12
+    },
+    {
+      "player": "Suryakumar Yadav",
+      "runs": 3,
+      "matches": 13
+    },
+    {
+      "player": "Kieron Pollard",
+      "runs": 0,
+      "matches": 14
+    },
+    {
+      "player": "Shubman Gill",
+      "runs": 2,
+      "matches": 13
+    },
+    {
+      "player": "Sanju Samson",
+      "runs": 4,
+      "matches": 14
+    }
+  ],
+  "mostFifties": [
+    {
+      "player": "Chris Gayle",
+      "runs": 5,
+      "matches": 13
+    },
+    {
+      "player": "Virat Kohli",
+      "runs": 6,
+      "matches": 13
+    },
+    {
+      "player": "Rohit Sharma",
+      "runs": 8,
+      "matches": 12
+    },
+    {
+      "player": "Jonny Bairstow",
+      "runs": 5,
+      "matches": 12
+    },
+    {
+      "player": "Rishabh Pant",
+      "runs": 5,
+      "matches": 16
+    },
+    {
+      "player": "David Warner",
+      "runs": 6,
+      "matches": 16
+    },
+    {
+      "player": "AB de Villiers",
+      "runs": 7,
+      "matches": 14
+    },
+    {
+      "player": "Andre Russell",
+      "runs": 5,
+      "matches": 14
+    },
+    {
+      "player": "Sanju Samson",
+      "runs": 9,
+      "matches": 16
+    },
+    {
+      "player": "Shubman Gill",
+      "runs": 6,
+      "matches": 15
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Stats Visualizer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="">
+    <div class="container">
+        <h1 class="">IPL Stats Visualizer (2021-2025)</h1>
+        
+        <div class="">
+            <label for="season" class="">Select Season:</label>
+            <select id="season" class="">
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+            </select>
+        </div>
+
+        <div class="">
+            <div>
+                <h2 class="">Orange Cap (Top Runs)</h2>
+                <canvas id="orangeCapChart"></canvas>
+            </div>
+            <div>
+                <h2 class="">Most Fours</h2>
+                <canvas id="foursChart"></canvas>
+            </div>
+            <div>
+                <h2 class="">Most Sixes</h2>
+                <canvas id="sixesChart"></canvas>
+            </div>
+            <div>
+                <h2 class="">Most Centuries</h2>
+                <canvas id="centuriesChart"></canvas>
+            </div>
+            <div>
+                <h2 class="">Most Fifties</h2>
+                <canvas id="fiftiesChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store chart instances
+        const charts = {
+            orangeCapChart: null,
+            foursChart: null,
+            sixesChart: null,
+            centuriesChart: null,
+            fiftiesChart: null
+        };
+
+        async function fetchStats(season) {
+            try {
+                const response = await fetch(`/api/stats/${season}`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return await response.json();
+            } catch (error) {
+                console.error('Fetch error:', error);
+                return null;
+            }
+        }
+
+        function createChart(ctx, labels, data, title) {
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: title,
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        async function updateCharts(season) {
+            const stats = await fetchStats(season);
+            if (!stats) return;
+
+            // Destroy existing charts if they exist
+            Object.keys(charts).forEach(id => {
+                if (charts[id] && typeof charts[id].destroy === 'function') {
+                    charts[id].destroy();
+                    charts[id] = null;
+                }
+            });
+
+            // Create new charts
+            charts.orangeCapChart = createChart(
+                document.getElementById('orangeCapChart').getContext('2d'),
+                stats.orangeCap.map(p => p.player),
+                stats.orangeCap.map(p => parseInt(p.runs) || 0),
+                'Runs Scored'
+            );
+
+            charts.foursChart = createChart(
+                document.getElementById('foursChart').getContext('2d'),
+                stats.mostFours.map(p => p.player),
+                stats.mostFours.map(p => parseInt(p.runs) || 0),
+                'Number of Fours'
+            );
+
+            charts.sixesChart = createChart(
+                document.getElementById('sixesChart').getContext('2d'),
+                stats.mostSixes.map(p => p.player),
+                stats.mostSixes.map(p => parseInt(p.runs) || 0),
+                'Number of Sixes'
+            );
+
+            charts.centuriesChart = createChart(
+                document.getElementById('centuriesChart').getContext('2d'),
+                stats.mostCenturies.map(p => p.player),
+                stats.mostCenturies.map(p => parseInt(p.runs) || 0),
+                'Number of Centuries'
+            );
+
+            charts.fiftiesChart = createChart(
+                document.getElementById('fiftiesChart').getContext('2d'),
+                stats.mostFifties.map(p => p.player),
+                stats.mostFifties.map(p => parseInt(p.runs) || 0),
+                'Number of Fifties'
+            );
+        }
+
+        document.getElementById('season').addEventListener('change', (e) => {
+            updateCharts(e.target.value);
+        });
+
+        // Initial load
+        updateCharts('2025');
+    </script>
+</body>
+</html>

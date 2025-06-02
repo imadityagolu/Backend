@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1>Random Image from API</h1>
+    <img id="randomImage" alt="Random Image" width="400" />
+    <br />
+    <button onclick="loadImage()">Load Image</button>
+
+<script>
+  fetch('http://localhost:7542/api/v1/random/image')
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        document.getElementById('randomImage').src = data.image;
+      } else {
+        console.error('Failed to fetch image');
+      }
+    });
+</script>
+
+</body>
+</html>
