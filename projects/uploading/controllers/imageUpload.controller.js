@@ -18,8 +18,9 @@ const uploadFile = async (req, res) => {
 
 const shareFile = async (req, res) => {
     try {
-        const link = "http://localhost:8056/uploads/" + req.body._id;
         const file = await FileModel.findById(req.body._id);
+        const name = file.modifiedFileName;
+        const link = "http://localhost:8056/uploads/" + name;
         if(!file){
             throw new Error("id not found");
         }
@@ -36,9 +37,18 @@ const shareFile = async (req, res) => {
     
 };
 
+const downloadFile = async (req, res) => {
+    const file = await FileModel.findById(req.params.fileId);
+    const path = file.path;
+    res.download(path, file.originalFileName);
+    res.end("download end point : " + file.originalFileName + " - " + path);
+    return;
+};
+
 const fileController = {
     uploadFile,
-    shareFile
-};
+    shareFile,
+    downloadFile
+}
 
 module.exports = fileController;

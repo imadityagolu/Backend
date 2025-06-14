@@ -11,6 +11,6 @@ router.post("/api/v1/file/upload", uploader.single("file"), fileController.uploa
 
 router.post("/api/v1/file/share", fileController.shareFile);
 
-// router.get("/api/v1/file/download",);
+router.get("/file/:fileId", fileController.downloadFile);
 
 module.exports = router;
