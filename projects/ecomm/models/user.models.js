@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = mongoose.Schema({
     firstName: {
@@ -49,6 +50,21 @@ const userSchema = mongoose.Schema({
             required: true
         }
     }
+});
+
+
+// save - internal middleware of mongoose automatically executes before saving any data 
+userSchema.pre("save", async function () {
+
+    //hasing to protect password
+    //salt(degree of complexicity from 1-10, 10 is highest)
+    const salt = await bcrypt.genSalt(10);
+
+    //salt + hash
+    const hashPassword = await bcrypt.hash(this.password,salt);
+
+    //assigning hash password
+    this.password = hashPassword;
 });
 
 const userModel = mongoose.model("user", userSchema);
