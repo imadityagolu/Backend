@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const { rateLimit } = require("express-rate-limit");
 
 const userRoutes = require("./routes/user.routes");
 const productRoutes = require("./routes/product.routes");
@@ -13,8 +14,18 @@ const orderRoutes = require('./routes/order.routes');
 const app = express();
 dotenv.config();
 
-//middleware
+//rate limit
+const limit = rateLimit({
+    windowMs: 1 * 60 * 1000, //1 minute
+    limit: 6, //number of request
+    message: {
+        message: "Api limit exceeded"
+    }
+})
+
+//middleware to convert, connect to frontend and limit request
 app.use(express.json());
+app.use(limit);
 app.use(cors());
 
 //bd connection
