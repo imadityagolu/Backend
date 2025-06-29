@@ -45,15 +45,22 @@ const login = async (req, res) => {
         id: user._id,
         email: user.email
     }
-    const userToken = jwt.sign(jwtData, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
+    const token = jwt.sign(jwtData, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
 
     // to set token in cookie
-    res.cookie("jwt", userToken);
+    // res.cookie("jwt", token);
+
+    //update user token by its id
+    await userModel.findByIdAndUpdate(user._id, {
+        $set: {
+            jwt: token
+        }
+    });
 
     res.status(200).json({
         success: true,
         message: "Login Api",
-        token: userToken
+        token: token
     });
 };
 

@@ -49,7 +49,18 @@ const userSchema = mongoose.Schema({
             type: String,
             required: true
         }
+    },
+    role: {
+        type: String,
+        enum: ["ADMIN","SELLER","CUSTOMER"]
+    },
+    jwt: {
+        type: String,
+        required: false,
+        default: ""
     }
+},{
+    timestamps: true
 });
 
 

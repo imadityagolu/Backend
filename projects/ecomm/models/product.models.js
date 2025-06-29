@@ -5,27 +5,27 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    location: {
-        type: String,
-        required: true
-    },
-    minExp: {
-        type: Number,
-        required: true
-    },
-    salary: {
-        type: Number,
-        required: true
-    },
     description: {
         type: String,
         required: true
     },
-    company: {
+    price: {
+        type: Number,
+        required: true
+    },
+    stock: {
+        type: Number,
+        required: true
+    },
+    category: {
         type: String,
         required: true
     },
-    skills: {
+    brand: {
+        type: String,
+        required: true
+    },
+    keywords: {
         type: [String],
         required: true
     }
